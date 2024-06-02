@@ -9,16 +9,17 @@ public class QuinzenaDTO implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
 	@Override
 	public String toString() {
 		return "QuinzenaDTO [nmFuncionario=" + nmFuncionario + ", valorQuinzena=" + valorQuinzena + ", valorFaltas="
-				+ valorFaltas + ", valorVale=" + valorVale + "]";
+				+ valorFaltas + ", valorVale=" + valorVale + " valor a receber=" + getValorAReceber() + " ]";
 	}
 
 	private String nmFuncionario;
-	private BigDecimal valorQuinzena;
-	private BigDecimal valorFaltas;
-	private BigDecimal valorVale;
+	private BigDecimal valorQuinzena = BigDecimal.ZERO;
+	private BigDecimal valorFaltas = BigDecimal.ZERO;
+	private BigDecimal valorVale = BigDecimal.ZERO;
 
 	public String getNmFuncionario() {
 		return nmFuncionario;
@@ -50,6 +51,10 @@ public class QuinzenaDTO implements Serializable {
 
 	public void setValorVale(BigDecimal valorVale) {
 		this.valorVale = valorVale;
+	}
+
+	public BigDecimal getValorAReceber() {
+		return getValorQuinzena().subtract(getValorFaltas()).subtract(getValorVale());
 	}
 
 }
